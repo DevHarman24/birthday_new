@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Custom Animations & Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fdf2f8;
+            /* Rose 50 */
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        .handwritten {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Tape effect for images */
+        .tape-top {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 100px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            z-index: 10;
+        }
+
+        /* Shake Animation */
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
+
+        .shake-element {
+            animation: shake 0.5s;
+            animation-iteration-count: 1;
+        }
+
+        /* Reveal Animation */
+        .reveal-content {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .reveal-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Polaroid Style */
+        .polaroid {
+            background: white;
+            padding: 1rem;
+            padding-bottom: 3.5rem;
+            /* Large bottom padding for the polaroid look */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 20;
+        }
+
+        .polaroid:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .polaroid:nth-child(even):hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="text-gray-700">
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+        <!-- Decorative Background Blobs -->
+        <div
+            class="absolute top-0 left-0 w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+        </div>
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute -bottom-8 left-20 w-64 h-64 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
+        </div>
+
+        <div class="z-10 bg-white/60 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white max-w-lg w-full">
+            <h2 class="text-2xl text-pink-500 font-bold mb-2 tracking-widest uppercase text-xs">It's a special day</h2>
+            class="bg-yellow-100 p-8 shadow-md transform rotate-1 relative flex flex-col justify-center items-center
+            text-center">
+            <div class="w-8 h-8 rounded-full bg-red-300 absolute -top-3 left-1/2 transform -translate-x-1/2 shadow-sm">
+            </div>
+            <h3 class="handwritten text-3xl mb-4 text-gray-700">A Little Note</h3>
+            <p class="text-gray-700 leading-loose italic">
+                "Even though we met online, the laughs, late talks, and random moments feel real.
+                <br><br>
+                Hope this year gives you more songs to sing, more dances to enjoy, and plenty of adventures
+                worth remembering.
+                <br><br>
+                Stay the same - fun, fearless, and full of life ✨"
+            </p>
+            <p class="mt-4 font-bold text-gray-500">- Harman</p>
+        </div>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- The Interactive Surprise Section -->
+    <section id="surprise-section"
+        class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-pink-50 to-purple-100 py-20 px-4">
+
+        <div id="game-container" class="text-center transition-all duration-500">
+            <h2 id="surprise-heading" class="text-3xl md:text-4xl font-bold text-purple-600 mb-8">One Last Surprise...
+            </h2>
+            <p id="surprise-subtext" class="text-gray-500 mb-8 text-lg">I have a gift for you. Can you open it?</p>
+
+            <button id="surprise-btn"
+                class="text-9xl filter drop-shadow-xl transition-transform duration-100 transform hover:scale-110 active:scale-95 focus:outline-none">
+                🎁
+            </button>
+
+            <p id="click-feedback"
+                class="mt-8 text-xl font-bold text-pink-500 h-8 opacity-0 transition-opacity duration-300">
+                Keep going!
+            </p>
+
+            <div id="progress-wrapper" class="mt-8 w-64 h-4 bg-gray-200 rounded-full mx-auto overflow-hidden">
+                <div id="progress-bar" class="h-full bg-pink-500 width-0 transition-all duration-300" style="width: 0%">
+                </div>
+            </div>
+        </div>
+
+        <!-- The Final Reveal Card (Hidden Initially) -->
+        <div id="final-reveal"
+            class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+            <div
+                class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl max-w-md w-full text-center relative reveal-content">
+                <button onclick="closeModal()"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">✕</button>
+
+                <div class="text-6xl mb-6 animate-bounce">🎂</div>
+                <h2 class="text-4xl text-pink-600 handwritten mb-6">Make a Wish!</h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                    May this year bring you all the happiness, success, and love you deserve. You are truly one of a
+                    kind.
+                    <br><br>
+                    <strong>Let's celebrate! 🎉</strong>
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="replayConfetti()"
+                        class="bg-purple-500 text-white px-6 py-2 rounded-full font-bold hover:bg-purple-600 transition">Yay!
+                        (More Confetti)</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="bg-white py-8 text-center text-gray-400 text-sm">
+        <p>Made with ❤️ for you</p>
+    </footer>
+
+    <script>
+        // --- LOGIC FOR THE SURPRISE GAME ---
+        let clicks = 0;
+        const requiredClicks = 5;
+        const btn = document.getElementById('surprise-btn');
+        const feedback = document.getElementById('click-feedback');
+        const progressBar = document.getElementById('progress-bar');
+        const progressWrapper = document.getElementById('progress-wrapper');
+        const gameContainer = document.getElementById('game-container');
+        const finalReveal = document.getElementById('final-reveal');
+        const revealContent = document.querySelector('.reveal-content');
+
+        // Text Elements
+        const heading = document.getElementById('surprise-heading');
+        const subtext = document.getElementById('surprise-subtext');
+
+        const messages = [
+            "Hey! harder!",
+            "It's stuck...",
+            "Almost there!",
+            "Just one more!",
+            "OPEN!!"
+        ];
+
+        btn.addEventListener('click', () => {
+            if (clicks >= requiredClicks) return; // Prevent extra clicks after finish
+
+            clicks++;
+
+            // Shake effect
+            btn.classList.remove('shake-element');
+            void btn.offsetWidth; // trigger reflow
+            btn.classList.add('shake-element');
+
+            // Burst of small confetti on every click
+            fireConfetti(0.3);
+
+            // Update Progress
+            const progress = (clicks / requiredClicks) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Update Text
+            if (clicks < requiredClicks) {
+                feedback.innerText = messages[clicks - 1] || "Keep going!";
+                feedback.classList.remove('opacity-0');
+            }
+
+            // Final Click Logic
+            if (clicks === requiredClicks) {
+                // Change UI to "Opened" state immediately
+                btn.innerHTML = "🥳"; // Change to Party Face
+                btn.classList.remove('hover:scale-110', 'active:scale-95');
+                btn.style.cursor = "default";
+
+                heading.innerText = "YAY! Surprise Unlocked!";
+                heading.classList.add('text-pink-600');
+
+                subtext.innerText = "You opened the box!";
+
+                feedback.style.opacity = '0'; // Hide feedback text
+                progressWrapper.style.display = 'none'; // Hide progress bar
+
+                // Wait a moment then show the popup card
+                setTimeout(() => {
+                    showFinalReveal();
+                }, 500);
+            }
+        });
+
+        function showFinalReveal() {
+            finalReveal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                revealContent.classList.add('reveal-active');
+                fireConfetti(1.5); // Massive confetti
+                startConfettiLoop(); // Continuous loop
+            }, 50);
+        }
+
+        function closeModal() {
+            finalReveal.classList.add('hidden');
+        }
+
+        function replayConfetti() {
+            fireConfetti(1);
+        }
+
+
+        // --- CUSTOM CONFETTI ENGINE (No external libraries needed) ---
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationId;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const colors = ['#ec4899', '#a855f7', '#fbbf24', '#3b82f6', '#10b981'];
+
+        function createParticle(x, y, burstForce) {
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = (Math.random() * 15 + 5) * burstForce;
+            return {
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * velocity,
+                vy: Math.sin(angle) * velocity - 5, // Upward bias
+                size: Math.random() * 8 + 4,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 10,
+                gravity: 0.5,
+                drag: 0.96,
+                life: 1.0
+            };
+        }
+
+        function fireConfetti(intensity = 1) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const particleCount = 100 * intensity;
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(createParticle(centerX, centerY, intensity));
+            }
+
+            if (!animationId) {
+                updateConfetti();
+            }
+        }
+
+        let loopActive = false;
+        function startConfettiLoop() {
+            if (loopActive) return;
+            loopActive = true;
+
+            const interval = setInterval(() => {
+                if (!loopActive) clearInterval(interval);
+                const x = Math.random() * window.innerWidth;
+                particles.push(createParticle(x, -20, 0.5)); // Fall from top
+            }, 200);
+        }
+
+        function updateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.vx *= p.drag;
+                p.rotation += p.rotationSpeed;
+                p.life -= 0.005;
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+
+                if (p.life <= 0 || p.y > canvas.height + 50) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+
+            if (particles.length > 0 || loopActive) {
+                animationId = requestAnimationFrame(updateConfetti);
+            } else {
+                animationId = null;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
